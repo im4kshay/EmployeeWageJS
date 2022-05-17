@@ -10,6 +10,8 @@ let empWage = 0;
 let totalWorkingHrs = 0;
 let totalEmpWage = 0;
 let empDailyWageArr = new Array();
+let empDayWiseMap = new Map();
+
 function getWorkHrs(empCheck)
 {
     switch(empCheck)
@@ -33,6 +35,7 @@ while(workingDay <= MAX_WORKING_DAYS && totalWorkingHrs <= MAX_WORKING_HRS)
     empHrs = getWorkHrs(empCheck);
     empWage = EMP_RATE_PER_HR * empHrs;
     empDailyWageArr.push(CalculateWage(empHrs));
+    empDayWiseMap.set(workingDay,CalculateWage(empHrs));
     ///console.log("Emp Wage for day "+workingDay+" is "+empWage);
     totalWorkingHrs += empHrs;
     workingDay++;
@@ -86,3 +89,10 @@ function getTotalWorkingDays(numbOfDays,dailyEmpWage)
     return numbOfDays;
 }
 console.log("UC-7-g Number of actual working days "+ empDailyWageArr.reduce(getTotalWorkingDays,0));
+
+console.log(empDayWiseMap);
+function totalEmpWageMap(dailyEmpWage,totalWage)
+{
+    return totalWage + dailyEmpWage;
+}
+console.log("Total wage using Map: "+Array.from(empDayWiseMap.values()).reduce(totalEmpWageMap,0));
