@@ -40,3 +40,49 @@ while(workingDay <= MAX_WORKING_DAYS && totalWorkingHrs <= MAX_WORKING_HRS)
 console.log(empDailyWageArr);
 totalEmpWage = CalculateWage(totalWorkingHrs);
 console.log("Total Employee wage for a Month: "+ totalEmpWage +" worked for "+totalWorkingHrs+" Hrs");
+
+let totalWage = 0;
+function getTotalWage(empWage)
+{
+    totalWage += empWage;
+}
+empDailyWageArr.forEach(getTotalWage);
+console.log("UC-7-a TotalWage using Array helper func ForEach: "+totalWage);
+
+function totalWagwUsingReduce(total,dailyEmpWage)
+{
+    return total + dailyEmpWage;
+}
+console.log("UC-7-a Using reduce: "+empDailyWageArr.reduce(totalWagwUsingReduce,0));
+
+let daycount = 0;
+function mapDayWithWage(dailyEmpWage)
+{
+    daycount++;
+    return "Day"+daycount+":"+dailyEmpWage;
+}
+let mapDayWithDailyWage = empDailyWageArr.map(mapDayWithWage);
+console.log("UC-7-b day along with dailyWage=> "+mapDayWithDailyWage);
+
+function getFullTimeDays(dailyEmpWage)
+{
+    return dailyEmpWage.includes("160");
+}
+let fullTimeDays = mapDayWithDailyWage.filter(getFullTimeDays);
+console.log("UC-7-c FullTime working days:"+fullTimeDays);
+console.log("UC-7-d First occurance of Fulltime workday: "+mapDayWithDailyWage.find(getFullTimeDays));
+console.log("UC-7-e Check All elements are Full time working days: "+fullTimeDays.every(getFullTimeDays));
+
+function getPartTimeDays(dailyEmpWage)
+{
+    return dailyEmpWage.includes("80");
+}
+console.log("UC-7-f Check if any elements are part time working days: "+mapDayWithDailyWage.some(getPartTimeDays));
+
+function getTotalWorkingDays(numbOfDays,dailyEmpWage)
+{
+    if(dailyEmpWage > 0)
+        return numbOfDays+1;
+    return numbOfDays;
+}
+console.log("UC-7-g Number of actual working days "+ empDailyWageArr.reduce(getTotalWorkingDays,0));
