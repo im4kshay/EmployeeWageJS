@@ -16,7 +16,14 @@ class EmployeePayroll
     }
     //Getter and setter methods for properties of class
     get name() { return this._name };
-    set name(name) { this._name = name };
+    set name(name) {
+        let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
+        if (nameRegex.test(name))
+        {
+            this._name = name;
+        }
+        else throw 'Name is Incorrect!'; 
+        }
 
     //Method to return string of values
     toString() {
@@ -29,8 +36,13 @@ class EmployeePayroll
 let employPayroll = new EmployeePayroll(1, "Aniruddha", 38000);
 console.log(employPayroll.toString());
 //Using Set to update values of the properties of class
-employPayroll.name = "Amar";
-employPayroll.salary = 36000;
+try{
+    employPayroll.name = "amar";
+    employPayroll.salary = 36000;
+}
+catch(ex){
+    console.error(ex);
+}
 console.log(employPayroll.toString());
 let newEmployeePayroll = new EmployeePayroll(2, "Terrisa", 30000, "F", new Date());
 console.log(newEmployeePayroll.toString());
