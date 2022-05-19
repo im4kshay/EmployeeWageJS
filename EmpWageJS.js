@@ -12,6 +12,7 @@ let totalEmpWage = 0;
 let empDailyWageArr = new Array();
 let empDayWiseMap = new Map();
 let empDailyHrsMap = new Map();
+let empDailyHrsAndWageArr = new Array();
 
 function getWorkHrs(empCheck)
 {
@@ -38,6 +39,15 @@ while(workingDay <= MAX_WORKING_DAYS && totalWorkingHrs <= MAX_WORKING_HRS)
     empDailyWageArr.push(CalculateWage(empHrs));
     empDayWiseMap.set(workingDay,CalculateWage(empHrs));
     empDailyHrsMap.set(workingDay,empHrs);
+    empDailyHrsAndWageArr.push(
+    {
+        dayNum : workingDay,
+        dailyHrs : empHrs,
+        dailyWage : CalculateWage(empHrs),
+        toString(){
+            return '\nday: '+this.dayNum+' workingHrs=> '+this.dailyHrs+' Total Wage=> '+this.dailyWage
+        },
+    });
     ///console.log("Emp Wage for day "+workingDay+" is "+empWage);
     totalWorkingHrs += empHrs;
     workingDay++;
@@ -119,3 +129,5 @@ empDailyHrsMap.forEach((value,key,map) => {
 console.log("FullTime work days: "+fullWorkingDays);
 console.log("PartTime work days: "+partWorkingDays);
 console.log("NonTime work days: "+nonWorkingDays);
+
+console.log("UC10- Displaying daily work hrs and wage "+empDailyHrsAndWageArr);
