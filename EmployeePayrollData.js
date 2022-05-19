@@ -33,16 +33,16 @@ class EmployeePayroll
     }
 }
 //Created obj for class using parameterized conbstructor
-let employPayroll = new EmployeePayroll(1, "Aniruddha", 38000);
+let employPayroll = new EmployeePayroll(1, "Akshay", 46000);
 console.log(employPayroll.toString());
 //Using Set to update values of the properties of class
 try{
-    employPayroll.name = "amar";
-    employPayroll.salary = 36000;
+    employPayroll.name = "Anuj";
+    employPayroll.salary = 32000;
 }
 catch(ex){
     console.error(ex);
 }
 console.log(employPayroll.toString());
-let newEmployeePayroll = new EmployeePayroll(2, "Terrisa", 30000, "F", new Date());
+let newEmployeePayroll = new EmployeePayroll(2, "Manali", 30000, "F", new Date());
 console.log(newEmployeePayroll.toString());
